@@ -1,0 +1,57 @@
+/*
+ * {{PROJECT}} — theme starting point.
+ *
+ * Copy this file to `theme/<system>.css`, one per design system, and index it in
+ * `07-theme.md` with the audiences it serves. `template.css` and `example.css`
+ * are the skill's own reference files: they are never a project's theme, and
+ * `gate:theme-per-system` skips them for that reason.
+ *
+ * Three layers, in the order they are reached for. Resolving at layer 1 and
+ * stopping is the whole discipline — descending when layer 1 would have done it
+ * is what turns a theme into a second implementation of the library.
+ */
+
+/* ------------------------------------------------------------------------ */
+/* 1 — tokens. A rebrand is this layer and nothing else.                      */
+/* ------------------------------------------------------------------------ */
+
+:root {
+  /* --primary: ; */
+  /* --primary-foreground: ; */
+  /* --destructive: ; */
+  /* --muted: ; */
+  /* --radius: ; */
+}
+
+.dark {
+  /* Every token defined above needs a value here too: a token defined for one
+     scheme only breaks in the other, and the failure is invisible while you
+     build it (UIX-5). */
+}
+
+/* ------------------------------------------------------------------------ */
+/* 2 — a slot, when the design differs in shape and not only in colour.       */
+/*                                                                            */
+/* Every component publishes a class and a `data-slot` for each of its parts. */
+/* Those are its public surface. A selector that reaches through the markup   */
+/* instead binds {{PROJECT}} to an arrangement the library may change in a    */
+/* patch release (UIX-18).                                                    */
+/* ------------------------------------------------------------------------ */
+
+/* .button { } */
+/* .card { } */
+/* .table { } */
+
+/* ------------------------------------------------------------------------ */
+/* 3 — a slot in a state or a variant the design treats differently.          */
+/* ------------------------------------------------------------------------ */
+
+/* .button[data-variant="destructive"] { } */
+
+/*
+ * Never:
+ *   .card > div span { }        reaches through the markup
+ *   .button { color: red !important }   wins the argument, hides which rule was wrong
+ *   a component re-implemented in the app because a slot was missing —
+ *   that is a gap to close in the library (UIX-18)
+ */

@@ -1,0 +1,21 @@
+{
+	"name": "@turystack/uiux-template",
+	"description": "Template for a project's own UI/UX skill — brand tokens, layout and density, copy and tone, concept-to-primitive mapping and the design exports a surface must match. Materialized once per project as <project>-uiux. Installed into .claude/skills and/or .codex/skills via the turystack CLI.",
+	"private": false,
+	"version": "1.0.0",
+	"sideEffects": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"files": [
+		"*.md",
+		"assets"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/turystack/uiux-template.git"
+	}
+}

@@ -1,0 +1,87 @@
+/*
+ * acme › internal — the theme the backoffice and the admin are built against.
+ *
+ * A worked example of the three layers, for reading rather than importing. The
+ * project's own themes live beside this file under their system's name;
+ * `gate:theme-per-system` skips `template.css` and `example.css`.
+ */
+
+/* ------------------------------------------------------------------------ */
+/* 1 — tokens. Most of acme's identity is here, and a rebrand touches         */
+/*     nothing else.                                                          */
+/* ------------------------------------------------------------------------ */
+
+:root {
+  --primary: oklch(0.42 0.09 258);
+  --primary-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.51 0.17 24);
+  --muted: oklch(0.96 0.005 258);
+  --muted-foreground: oklch(0.52 0.02 258);
+  --border: oklch(0.9 0.01 258);
+  --radius: 0.375rem;
+}
+
+.dark {
+  --primary: oklch(0.72 0.11 258);
+  --primary-foreground: oklch(0.18 0.02 258);
+  --destructive: oklch(0.68 0.15 24);
+  --muted: oklch(0.26 0.02 258);
+  --muted-foreground: oklch(0.68 0.02 258);
+  --border: oklch(0.32 0.02 258);
+}
+
+/* ------------------------------------------------------------------------ */
+/* 2 — slots, where acme's design differs in shape and not only in colour.    */
+/* ------------------------------------------------------------------------ */
+
+/* Operators scan hundreds of rows a day: acme's buttons are squarer and its
+   labels are set in small caps, which the library does not do by default. */
+.button {
+  border-radius: var(--radius);
+  letter-spacing: 0.02em;
+  font-variant-caps: all-small-caps;
+  font-size: 0.9rem;
+}
+
+/* A card here is a surface for data, not a raised object. */
+.card {
+  border-radius: var(--radius);
+  box-shadow: none;
+  border-color: var(--border);
+}
+
+/* Compact by decision, not by accident — acme's density rule for tables
+   (02-layout.md), expressed once. */
+.table {
+  font-size: 0.82rem;
+}
+
+.badge {
+  border-radius: 0.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------------ */
+/* 3 — variants and states acme treats differently.                          */
+/* ------------------------------------------------------------------------ */
+
+/* Cancelling an order is destructive and reversible by nobody: acme states it
+   with an outline rather than a filled red block, so the primary action on the
+   screen stays the primary action. */
+.button[data-variant="destructive"] {
+  background: transparent;
+  color: var(--destructive);
+  border: 1px solid var(--destructive);
+}
+
+/* A blocked action stays visible and inert with its reason (ARC-ERR-9); acme
+   dims it rather than hiding it. */
+.button[data-disabled="true"] {
+  opacity: 0.55;
+}
+
+/* The colour-scheme scope is the one place a theme may nest, and only one
+   level deep. */
+.dark .card {
+  border-color: var(--border);
+}
